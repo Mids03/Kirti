@@ -1,0 +1,161 @@
+================================================================================
+                                PROJECT REPORT
+================================================================================
+
+1. COVER PAGE
+--------------------------------------------------------------------------------
+Project Title:   Academic Task Manager (ATM)
+Student Name:    [Your Name Here]
+Register Number: [Your Registration Number Here]
+Course/Subject:  [Subject Name]
+Date:            [Current Date]
+
+================================================================================
+
+2. INTRODUCTION
+--------------------------------------------------------------------------------
+The Academic Task Manager (ATM) is a standalone Command Line Interface (CLI) 
+application designed to assist students in managing their academic obligations 
+efficiently. Developed using Python, this project leverages Object-Oriented 
+Programming (OOP) principles to provide a secure and persistent environment for 
+tracking assignments, projects, and study schedules. The system addresses the 
+need for a lightweight, offline tool that does not require complex installation 
+or internet connectivity to function.
+
+3. PROBLEM STATEMENT
+--------------------------------------------------------------------------------
+Students currently face significant challenges in tracking multiple deadlines 
+across various subjects. Relying on scattered methods—such as physical diaries, 
+sticky notes, or complex online tools—often leads to missed deadlines and 
+increased academic stress. There is a clear need for a centralized, digital, 
+and offline-capable solution that allows students to record, prioritize, and 
+monitor the status of their academic tasks in one secure location.
+
+4. FUNCTIONAL REQUIREMENTS
+--------------------------------------------------------------------------------
+The system includes the following functional modules:
+
+1. User Management Module:
+   - Registration: Allows new users to create an account with a unique username.
+   - Authentication: Secure login using password verification.
+   - Session Management: Handling user logout.
+
+2. Task Management Module (CRUD):
+   - Create: Users can add new tasks with a Title, Description, and Priority.
+   - Read: Users can view a formatted list of their specific tasks.
+   - Update: Users can modify the status of a task (e.g., Pending to Completed).
+   - Delete: Users can permanently remove tasks from the records.
+
+3. Analytics Module:
+   - Reporting: The system calculates productivity metrics, displaying the 
+     total number of tasks, the count of completed items, and an overall 
+     efficiency percentage.
+
+5. NON-FUNCTIONAL REQUIREMENTS
+--------------------------------------------------------------------------------
+1. Security: Passwords are strictly hashed using the SHA-256 algorithm before 
+   storage; no plain-text passwords are saved.
+2. Persistence: All data is automatically saved to a local JSON file 
+   (app_data.json) immediately after any modification.
+3. Reliability: The system ensures data availability across sessions.
+4. Error Handling: The application utilizes try-except blocks to manage invalid 
+   user inputs (e.g., entering text for numeric IDs) to prevent crashes.
+5. Logging: Operational events (logins, errors, updates) are recorded in a 
+   separate log file (app.log) for auditing and debugging.
+
+6. SYSTEM ARCHITECTURE
+--------------------------------------------------------------------------------
+The project utilizes a Modular Monolithic Architecture:
+
+- Presentation Layer: The 'Application' class manages the Command Line Interface, 
+  accepting user inputs and displaying outputs.
+- Business Logic Layer: The 'UserManager', 'TaskManager', and 'AnalyticsEngine' 
+  classes handle the core rules and processing.
+- Data Access Layer: The 'DataManager' class abstracts the file I/O operations 
+  required to read and write to the JSON storage.
+- Security Layer: The 'SecurityService' class provides static methods for 
+  cryptographic hashing.
+
+7. DESIGN DIAGRAMS
+--------------------------------------------------------------------------------
+(Note: Please insert relevant diagrams in the final document)
+
+A. Use Case Diagram:
+   - Actor: Student
+   - Use Cases: Register, Login, Add Task, View Tasks, Update Status, 
+     Delete Task, View Analytics.
+
+B. Workflow Diagram:
+   - Start -> Auth Menu -> Login -> Main Dashboard -> Choose Operation 
+     -> Execute Logic -> Update Data Store -> Return to Dashboard.
+
+C. Class Diagram:
+   - Shows relationships between Application (Controller), Manager classes 
+     (Logic), and Data/Security classes (Utilities).
+
+8. DESIGN DECISIONS & RATIONALE
+--------------------------------------------------------------------------------
+- Storage Format (JSON): JSON was selected over SQLite because it is lightweight, 
+  human-readable, and requires no external database server, satisfying the 
+  constraint for a portable student project.
+- Security Algorithm (SHA-256): Chosen because it is a standard, irreversible 
+  hashing algorithm included in Python's standard library, ensuring compliance 
+  with security requirements.
+- Interface (CLI): A text-based interface was chosen to prioritize logic 
+  implementation and performance over graphical overhead.
+
+9. IMPLEMENTATION DETAILS
+--------------------------------------------------------------------------------
+- Language: Python 3.x
+- Libraries Used: 
+  - `json`: For data serialization.
+  - `hashlib`: For password encryption.
+  - `os`: For file system checks.
+  - `logging`: For tracking application events.
+  - `datetime`: For timestamping creation dates.
+- Structure: The code is organized into distinct classes to ensure high cohesion 
+  and low coupling.
+
+10. SCREENSHOTS / RESULTS
+--------------------------------------------------------------------------------
+[Space for Screenshots]
+1. Screenshot of the Registration/Login menu.
+2. Screenshot of the Task List display.
+3. Screenshot of the Productivity Report output.
+
+11. TESTING APPROACH
+--------------------------------------------------------------------------------
+- Unit Testing: Verified the `hash_password` function to ensure consistent outputs.
+- Integration Testing: Tested the full workflow of Creating a Task -> Viewing it 
+  -> Updating it -> Verifying the change in the JSON file.
+- Boundary Testing: Tested password length limits and invalid menu selections 
+  to ensure the error handling logic works correctly.
+
+12. CHALLENGES FACED
+--------------------------------------------------------------------------------
+- Data Corruption: Initial tests showed that the program crashed if the data 
+  file was empty. This was resolved by implementing a check in `DataManager` 
+  to initialize a default structure if the file is missing or empty.
+- Input Validation: Handling non-integer inputs in menu selection required 
+  adding specific `ValueError` exception handling.
+
+13. LEARNINGS & KEY TAKEAWAYS
+--------------------------------------------------------------------------------
+- Practical application of Object-Oriented Programming (Classes, Inheritance).
+- Importance of separating concerns (Data vs. Logic vs. Presentation).
+- Techniques for secure data handling (Hashing).
+- Managing file I/O and JSON parsing in Python.
+
+14. FUTURE ENHANCEMENTS
+--------------------------------------------------------------------------------
+- Graphical User Interface (GUI): Implementing a frontend using Tkinter or PyQt.
+- Deadline Alerts: Adding a notification system for approaching due dates.
+- Search Functionality: Adding the ability to search for tasks by keywords.
+
+15. REFERENCES
+--------------------------------------------------------------------------------
+- Python 3.x Documentation: https://docs.python.org/3/
+- Course Materials on Software Engineering and Architecture.
+- Tutorials on Python standard libraries (json, hashlib).
+
+================================================================================
